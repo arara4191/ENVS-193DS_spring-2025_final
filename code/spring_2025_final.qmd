@@ -1,0 +1,24 @@
+---
+title: "spring_2025_final"
+format: html
+---
+
+Github repository: https://github.com/arara4191/ENVS-193DS_spring-2025_final.git 
+
+```{r}
+#loading in packages
+
+library("tidyverse")
+library("janitor")
+library("here")
+library("gt")
+
+```
+
+
+
+
+
+
+
+
