@@ -15,6 +15,14 @@ library("gt")
 
 ```
 
+# Problem 1
+
+## a. 
+
+In part 1 they used a Pearsons test which can be identified by their usage of the word "correlation" when looking at the distance from headwater (km) and annual total nitrogen load.
+
+In part 2 they used a one-way ANOVA test which can be identified by them comparing a single grouping variable(nitrogen load) with more than three subgroups(urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands).
+
 
 
 
