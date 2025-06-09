@@ -1,6 +1,12 @@
 ---
 title: "spring_2025_final"
+author: "Arantza Lira"
+date: "June 9,2025"
 format: html
+toc: true
+execute: 
+  message: false # messages dont show up
+  warning: false # warnings dont show up
 ---
 
 Github repository: https://github.com/arara4191/ENVS-193DS_spring-2025_final.git 
