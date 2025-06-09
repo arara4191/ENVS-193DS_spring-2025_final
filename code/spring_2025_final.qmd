@@ -9,6 +9,7 @@ Github repository: https://github.com/arara4191/ENVS-193DS_spring-2025_final.git
 #loading in packages
 
 library("tidyverse")
+library("lubridate")
 library("janitor")
 library("here")
 library("gt")
@@ -41,12 +42,30 @@ A difference was found between the average nitrogen load (kg year-1) and urban l
 #Problem 2
 
 ```{r-set up chunk}
+# reading in sea surface temperature data
 sst <-  read_csv("C:/Users/arant/Desktop/ENV S 193DS-R/ENVS-193DS_spring-2025_final/data/SST_update2023.csv")
 
 ```
 
-
 ##a. 
+
+```{r-sst clean}
+# cleaning sst dataset using tidyverse and lubridate packages
+
+sst_clean <- sst %>% # creating a new data frame using data from sst
+  mutate(year = year(date),  # creating new column "year" using year function that selects the year observation in the "date" column
+         month = month(date,label = TRUE)) %>% # creating new column "month" using month function that selects the month observation in the "date" column
+  filter(year == c("2018", "2019", "2020", "2021", "2022", "2023")) %>% # selecting years 2018 - 2023
+  select( -site, -latitude, -longitude, -date) %>% # deleting columns
+  select(year, month, temp) %>% # reordering columns
+  group_by(year, month) %>% # grouping data by year and month
+  summarize(mean_monthly_sst = round(mean(temp), digits = 1)) # using grouped data to find mean temp of each month per year and rounding
+
+
+```
+
+##b. 
+
 
 
 
