@@ -23,6 +23,13 @@ In part 1 they used a Pearsons test which can be identified by their usage of th
 
 In part 2 they used a one-way ANOVA test which can be identified by them comparing a single grouping variable(nitrogen load) with more than three subgroups(urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands).
 
+##b. 
+
+An equal variance test should be included using a Levene test. this will help determine the sample sizes are equal and that there are no biases within the urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands data. Homogeneity is a required component of the ANOVA test. Another test that should be conducted is the Shapiro-Wilk normality test. The ANOVA test depends on the data being normally distributed and conducting this test will help determine that the data is normally distributed. 
+
+##c. 
+
+
 
 
 
