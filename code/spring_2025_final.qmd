@@ -53,14 +53,23 @@ sst <-  read_csv("C:/Users/arant/Desktop/ENV S 193DS-R/ENVS-193DS_spring-2025_fi
 # cleaning sst dataset using tidyverse and lubridate packages
 
 sst_clean <- sst %>% # creating a new data frame using data from sst
-  mutate(year = year(date),  # creating new column "year" using year function that selects the year observation in the "date" column
+  mutate(year = factor(year(date)),  # creating new column "year" using year function that selects the year observation in the "date" column
          month = month(date,label = TRUE)) %>% # creating new column "month" using month function that selects the month observation in the "date" column
   filter(year == c("2018", "2019", "2020", "2021", "2022", "2023")) %>% # selecting years 2018 - 2023
   select( -site, -latitude, -longitude, -date) %>% # deleting columns
   select(year, month, temp) %>% # reordering columns
   group_by(year, month) %>% # grouping data by year and month
-  summarize(mean_monthly_sst = round(mean(temp), digits = 1)) # using grouped data to find mean temp of each month per year and rounding
+  summarize(mean_monthly_sst = round(mean(temp), digits = 1)) %>% # using grouped data to find mean temp of each month per year and rounding
+  ungroup() #ungroup the data to be worked with normally later
 
+
+
+
+slice_sample(sst_clean, n = 5)  #display 5 random rows from sst_clean
+#will not display only 5 rows if grouped
+
+
+str(sst_clean) #display sst_clean data structure
 
 ```
 
