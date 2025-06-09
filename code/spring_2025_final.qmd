@@ -38,6 +38,27 @@ Part 2:
 A difference was found between the average nitrogen load (kg year-1) and urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands sources (one-way ANOVA, F(among groups df, within groups df) = F-statistic, p = 0.02, \$\alpha = significance level). 
 
 
+#Problem 2
+
+```{r-set up chunk}
+sst <-  read_csv("C:/Users/arant/Desktop/ENV S 193DS-R/ENVS-193DS_spring-2025_final/data/SST_update2023.csv")
+
+```
+
+
+##a. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 #Problem 4
 
