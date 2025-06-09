@@ -39,6 +39,23 @@ A difference was found between the average nitrogen load (kg year-1) and urban l
 
 
 
+#Problem 4
+
+##a. 
+How are the visualizations different from each other in the way you have represented your data?
+  * My data in homework 2 is physically separated by fast and slow music recordings in box plots while my data in homework 3 is mixed together in a circular diagram only distinguished by the type of color used for each data point. My data in homework 2 took a more statistical approach while homework 3 took an artistic approach and used softer shapes and doodles to represent information.
+  
+What similarities do you see between all your visualizations?
+  * The similarities I see between my visualizations is that each had limited data points as they were both in the early drafting stages. They both still used pink to represent fast music bike rides and blue/green colors for slow music bike rides. Another big similarity that stood out was that there were more recorded observations for fast music bike rides in comparison to slow music bike rides. 
+
+What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization?Are these different between visualizations? If so, why? If not, why not?
+  * Aside form there being a trend of more fast music bike rides recorded, it can be seen that fast music bike rides have some of the highest recorder biking speeds (mph) across both visualizations. This is seen as bigger circles in homework 3 and in higher data points in the box plots y-axis(above 13 mph). Another pattern that can be seen in homework 3 is that I mainly biked past noon(denoted by orange dots around data point observations). These observed patterns are different between visualizations because the artistic visualization in homework 3 fits more data into a singular image (time, music type, wind presence, biking speed) than the limited data information in homework 2 (music type, biking speed).
+
+What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
+
+
+
+
 
 
 
