@@ -25,9 +25,17 @@ In part 2 they used a one-way ANOVA test which can be identified by them compari
 
 ##b. 
 
-An equal variance test should be included using a Levene test. this will help determine the sample sizes are equal and that there are no biases within the urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands data. Homogeneity is a required component of the ANOVA test. Another test that should be conducted is the Shapiro-Wilk normality test. The ANOVA test depends on the data being normally distributed and conducting this test will help determine that the data is normally distributed. 
+An equal variance test should be included using a Levene test. This will help determine if the sample sizes are equal and that there are no biases within the urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands data. Homogeneity is a required component of the ANOVA test. Another test that should be conducted is the Shapiro-Wilk normality test. The ANOVA test depends on the data being normally distributed and conducting this test will help determine that the data is normally distributed. 
 
 ##c. 
+
+Part 1: 
+
+A statistically significant correlation between between distance from headwater(km) and annual total nitrogen load (kg year-1) was found (Pearson’s r = correlation coefficient, p = 0.03, α = significance level\]). 
+
+Part 2: 
+
+A difference was found between the average nitrogen load (kg year-1) and urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands sources (one-way ANOVA, F(among groups df, within groups df) = F-statistic, p = 0.02, \$\alpha = significance level). 
 
 
 
