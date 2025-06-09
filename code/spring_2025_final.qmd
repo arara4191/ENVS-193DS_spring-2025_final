@@ -75,6 +75,37 @@ str(sst_clean) #display sst_clean data structure
 
 ##b. 
 
+```{r}
+
+#|message: false
+#|warning: false
+
+
+# setting up baseplot for rain data
+sst_plot <- ggplot(data = sst_clean, # using sst_clean dataset for plot 
+                    aes(x = month, # represents month
+                        y = mean_monthly_sst,#represents total data
+                        color = year, # data will be colored by year groupings
+                        group = year)) + #Ensures that data points from the same year are grouped together
+
+  geom_line() + # adds lines to plot
+  geom_point() + # adds points to each month
+   scale_color_brewer(palette = "Purples") +
+  labs(
+       x = "Month", #adding x axis title
+       y = "Mean monthly sea surface temperature (°C)") + # adding y axis title
+  theme(legend.position= c(0.1,0.7), # adjusting the position of the legend
+        panel.background = element_rect(fill = "white"),#making panel background white
+        panel.border = element_rect(color = "grey", fill = NA),
+        plot.title.position = "plot") + # aligns title position to the left
+  guides(color = guide_legend(title = "Year")) # renaming legend title
+ 
+   
+#showing plot
+sst_plot
+
+
+```
 
 
 
