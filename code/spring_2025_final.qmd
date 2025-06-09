@@ -41,7 +41,7 @@ A difference was found between the average nitrogen load (kg year-1) and urban l
 
 #Problem 2
 
-```{r-set up chunk}
+```{r}
 # reading in sea surface temperature data
 sst <-  read_csv("C:/Users/arant/Desktop/ENV S 193DS-R/ENVS-193DS_spring-2025_final/data/SST_update2023.csv")
 
@@ -49,7 +49,8 @@ sst <-  read_csv("C:/Users/arant/Desktop/ENV S 193DS-R/ENVS-193DS_spring-2025_fi
 
 ##a. 
 
-```{r-sst clean}
+```{r}
+
 # cleaning sst dataset using tidyverse and lubridate packages
 
 sst_clean <- sst %>% # creating a new data frame using data from sst
@@ -77,17 +78,13 @@ str(sst_clean) #display sst_clean data structure
 
 ```{r}
 
-#|message: false
-#|warning: false
-
 
 # setting up baseplot for rain data
-sst_plot <- ggplot(data = sst_clean, # using sst_clean dataset for plot 
+sst_plot <- ggplot(data = sst_clean , # using sst_clean dataset for plot 
                     aes(x = month, # represents month
                         y = mean_monthly_sst,#represents total data
                         color = year, # data will be colored by year groupings
                         group = year)) + #Ensures that data points from the same year are grouped together
-
   geom_line() + # adds lines to plot
   geom_point() + # adds points to each month
    scale_color_brewer(palette = "Purples") +
@@ -106,14 +103,6 @@ sst_plot
 
 
 ```
-
-
-
-
-
-
-
-
 
 
 
