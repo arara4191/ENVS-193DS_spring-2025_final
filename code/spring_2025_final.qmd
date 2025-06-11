@@ -205,6 +205,19 @@ residual_3 <- simulateResiduals(model_3)
 
 residual_4 <- simulateResiduals(model_4)
 
+# displaying diagnostic plots for each model
+# display plots in a 2x2 grid
+par(mfrow = c(2, 2))
+
+
+#creating all 4 plots
+plot(residual_1)
+plot(residual_2)
+plot(residual_3)
+plot(residual_4)
+
+
+
 
 ```
 
