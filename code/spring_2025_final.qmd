@@ -125,7 +125,7 @@ sst_plot
 
 ```{r}
 
-nest_boxes <-  read.csv(here("data", "occdist.csv")) #fixing file path render issue
+nest_boxes <-  read.csv(here("data", "occdist.csv")) #reading in data
 
 nest_b_clean <- clean_names(nest_boxes) %>%#cleaning names to replace . with _
   mutate(season = as.factor(season), #making season a factor
