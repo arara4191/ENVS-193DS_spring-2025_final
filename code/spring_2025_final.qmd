@@ -286,7 +286,7 @@ scale_y_continuous(limits = c(0,1),
 
 
 ## i. 
-**Figure 1.Swift Parrots prefer nest boxes near the forest edge.**Data obtained from DRYAD “Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird.” Circle points represent observed binary occupancy data for Swift Parrots (2016: n = 104, 2019: n = 123) used to build the model. Circle points show predicted occupancy probabilities from a saturated generalized linear model, with lines connecting them. The ribbons represent 95% confidence intervals around the predictions. Colors indicate season(purple = 2016, blue = 2019).
+**Figure 1.Swift Parrots prefer nest boxes near the forest edge.**Data obtained from DRYAD “Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird.”https://datadryad.org/dataset/doi:10.5061/dryad.83bk3j9sb  Circle points represent observed binary occupancy data for Swift Parrots (2016: n = 104, 2019: n = 123) used to build the model. Circle points show predicted occupancy probabilities from a saturated generalized linear model, with lines connecting them. The ribbons represent 95% confidence intervals around the predictions. Colors indicate season(purple = 2016, blue = 2019).
 
 ## j.
 ```{r}
