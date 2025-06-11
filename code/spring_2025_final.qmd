@@ -120,7 +120,16 @@ nest_b_clean <- clean_names(nest_boxes) #cleaning names to replace . with _
 ```
 
 
-#a. 
+##a. 
+In this dataset, the values of 0/1 in the columns Common Starlings(cs), Swift Parrots(sp), and Tree Martins(tm) represent if the nest boxes were occupied or not and by which species(1 = occupied, 0 = empty). The column e also represents if the nest box was occupied regardless of the species( 0 = occupied, 1 = empty).
+
+##b. 
+The main difference between Swift Parrots and other birds in this study is that they are the target species for restoration tools due to being critically endangered because of deforestation and their specified preference for nest cavities. This study aims to better understand how to create nest boxes appealing to Swift Parrots despite the usage of these nest boxes by other common birds in the area such as Tree Martins and Common Starlings.
+
+##c.
+The two years or "seasons" the authors are referring to are the years 2016 and 2019 where there was a mast tree flowering event at the breeding site that induced the nesting of these birds in the nest boxes. The year 2016 allowed to test for nest boxes at possible breeding sites while the year 2019 allowed to test the efficacy of permanent boxes.
+
+##d.
 
 
 
