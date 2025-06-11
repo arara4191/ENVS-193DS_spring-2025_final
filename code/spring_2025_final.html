@@ -129,7 +129,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lubridate"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"janitor"</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"here"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"gt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"gt"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"colorspace"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lterdatasampler"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"DHARMa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="problem-1" class="level1">
 <h1>Problem 1</h1>
@@ -139,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In part 2 they used a one-way ANOVA test which can be identified by them comparing a single grouping variable(nitrogen load) with more than three subgroups(urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands).</p>
 <p>##b.</p>
 <p>An equal variance test should be included using a Levene test. This will help determine if the sample sizes are equal and that there are no biases within the urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands data. Homogeneity is a required component of the ANOVA test. Another test that should be conducted is the Shapiro-Wilk normality test. The ANOVA test depends on the data being normally distributed and conducting this test will help determine that the data is normally distributed.</p>
-<p>##c.&nbsp;</p>
+<p>##c.</p>
 <p>Part 1:</p>
 <p>A statistically significant correlation between between distance from headwater(km) and annual total nitrogen load (kg year-1) was found (Pearson’s r = correlation coefficient, p = 0.03, α = significance level]).</p>
 <p>Part 2:</p>
@@ -171,11 +175,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 5 × 3
   year  month mean_monthly_sst
   &lt;fct&gt; &lt;ord&gt;            &lt;dbl&gt;
-1 2018  Dec               15.6
-2 2023  Jul               16.3
-3 2021  Aug               17.7
-4 2018  Apr               12.8
-5 2018  Feb               14.3</code></pre>
+1 2022  Feb               14.1
+2 2023  Aug               18.5
+3 2020  Sep               18.7
+4 2019  Jul               16.4
+5 2023  Jun               15.9</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will not display only 5 rows if grouped</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -219,10 +223,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>#Problem 3</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nest_boxes <span class="ot">&lt;-</span>  <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"occdist.csv"</span>)) <span class="co">#fixing file path render issue</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>nest_b_clean <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(nest_boxes) <span class="co">#cleaning names to replace . with _</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>##a. In this dataset, the values of 0/1 in the columns Common Starlings(cs), Swift Parrots(sp), and Tree Martins(tm) represent if the nest boxes were occupied or not and by which species(1 = occupied, 0 = empty). The column e also represents if the nest box was occupied regardless of the species( 0 = occupied, 1 = empty).</p>
+<p>##b. The main difference between Swift Parrots and other birds in this study is that they are the target species for restoration tools due to being critically endangered because of deforestation and their specified preference for nest cavities. This study aims to better understand how to create nest boxes appealing to Swift Parrots despite the usage of these nest boxes by other common birds in the area such as Tree Martins and Common Starlings.</p>
+<p>##c. The two years or “seasons” the authors are referring to are the years 2016 and 2019 where there was a mast tree flowering event at the breeding site that induced the nesting of these birds in the nest boxes. The year 2016 allowed to test for nest boxes at possible breeding sites while the year 2019 allowed to test the efficacy of permanent boxes.</p>
+<p>##d.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Model Description</th>
+<th>Model Number</th>
+<th>Season</th>
+<th>Distance to Forest Edge</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Null Model</td>
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Saturated model</td>
+<td>1</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>Season</td>
+<td>2</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Distance</td>
+<td>3</td>
+<td></td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
 <p>#Problem 4</p>
 <p>##a. How are the visualizations different from each other in the way you have represented your data? * My data in homework 2 is physically separated by fast and slow music recordings in box plots while my data in homework 3 is mixed together in a circular diagram only distinguished by the type of color used for each data point. My data in homework 2 took a more statistical approach while homework 3 took an artistic approach and used softer shapes and doodles to represent information.</p>
 <p>What similarities do you see between all your visualizations? * The similarities I see between my visualizations is that each had limited data points as they were both in the early drafting stages. They both still used pink to represent fast music bike rides and blue/green colors for slow music bike rides. Another big similarity that stood out was that there were more recorded observations for fast music bike rides in comparison to slow music bike rides.</p>
-<p>What patterns (e.g.&nbsp;differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization?Are these different between visualizations? If so, why? If not, why not? * Aside form there being a trend of more fast music bike rides recorded, it can be seen that fast music bike rides have some of the highest recorder biking speeds (mph) across both visualizations. This is seen as bigger circles in homework 3 and in higher data points in the box plots y-axis(above 13 mph). Another pattern that can be seen in homework 3 is that I mainly biked past noon(denoted by orange dots around data point observations). These observed patterns are different between visualizations because the artistic visualization in homework 3 fits more data into a singular image (time, music type, wind presence, biking speed) than the limited data information in homework 2 (music type, biking speed).</p>
+<p>What patterns (e.g.&nbsp;differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization?A re these different between visualizations? If so, why? If not, why not? * Aside form there being a trend of more fast music bike rides recorded, it can be seen that fast music bike rides have some of the highest recorder biking speeds (mph) across both visualizations. This is seen as bigger circles in homework 3 and in higher data points in the box plots y-axis(above 13 mph). Another pattern that can be seen in homework 3 is that I mainly biked past noon(denoted by orange dots around data point observations). These observed patterns are different between visualizations because the artistic visualization in homework 3 fits more data into a singular image (time, music type, wind presence, biking speed) than the limited data information in homework 2 (music type, biking speed).</p>
 <p>What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.</p>
 </section>
 </section>

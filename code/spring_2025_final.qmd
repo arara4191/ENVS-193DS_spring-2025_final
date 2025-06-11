@@ -7,9 +7,12 @@ toc: true
 execute: 
   message: false #messages dont show up
   warning: false #warnings dont show up
+editor: 
+  markdown: 
+    wrap: sentence
 ---
 
-Github repository: https://github.com/arara4191/ENVS-193DS_spring-2025_final.git 
+Github repository: https://github.com/arara4191/ENVS-193DS_spring-2025_final.git
 
 ```{r}
 #loading in packages
@@ -20,30 +23,36 @@ library("janitor")
 library("here")
 library("gt")
 
+library("colorspace")
+library("lterdatasampler")
+library("DHARMa")
 ```
 
 # Problem 1
 
-## a. 
+## a.
 
 In part 1 they used a Pearsons test which can be identified by their usage of the word "correlation" when looking at the distance from headwater (km) and annual total nitrogen load.
 
 In part 2 they used a one-way ANOVA test which can be identified by them comparing a single grouping variable(nitrogen load) with more than three subgroups(urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands).
 
-##b. 
+##b.
 
-An equal variance test should be included using a Levene test. This will help determine if the sample sizes are equal and that there are no biases within the urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands data. Homogeneity is a required component of the ANOVA test. Another test that should be conducted is the Shapiro-Wilk normality test. The ANOVA test depends on the data being normally distributed and conducting this test will help determine that the data is normally distributed. 
+An equal variance test should be included using a Levene test.
+This will help determine if the sample sizes are equal and that there are no biases within the urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands data.
+Homogeneity is a required component of the ANOVA test.
+Another test that should be conducted is the Shapiro-Wilk normality test.
+The ANOVA test depends on the data being normally distributed and conducting this test will help determine that the data is normally distributed.
 
-##c. 
+##c.
 
-Part 1: 
+Part 1:
 
-A statistically significant correlation between between distance from headwater(km) and annual total nitrogen load (kg year-1) was found (Pearson’s r = correlation coefficient, p = 0.03, α = significance level\]). 
+A statistically significant correlation between between distance from headwater(km) and annual total nitrogen load (kg year-1) was found (Pearson’s r = correlation coefficient, p = 0.03, α = significance level\]).
 
-Part 2: 
+Part 2:
 
-A difference was found between the average nitrogen load (kg year-1) and urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands sources (one-way ANOVA, F(among groups df, within groups df) = F-statistic, p = 0.02, \$\alpha = significance level). 
-
+A difference was found between the average nitrogen load (kg year-1) and urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands sources (one-way ANOVA, F(among groups df, within groups df) = F-statistic, p = 0.02, \$\alpha = significance level).
 
 #Problem 2
 
@@ -53,7 +62,7 @@ sst <-  read_csv("C:/Users/arant/Desktop/ENV S 193DS-R/ENVS-193DS_spring-2025_fi
 
 ```
 
-##a. 
+##a.
 
 ```{r}
 
@@ -80,7 +89,7 @@ str(sst_clean) #display sst_clean data structure
 
 ```
 
-##b. 
+##b.
 
 ```{r}
 
@@ -119,17 +128,29 @@ nest_boxes <-  read.csv(here("data", "occdist.csv")) #fixing file path render is
 nest_b_clean <- clean_names(nest_boxes) #cleaning names to replace . with _
 ```
 
+##a.
+In this dataset, the values of 0/1 in the columns Common Starlings(cs), Swift Parrots(sp), and Tree Martins(tm) represent if the nest boxes were occupied or not and by which species(1 = occupied, 0 = empty).
+The column e also represents if the nest box was occupied regardless of the species( 0 = occupied, 1 = empty).
 
-##a. 
-In this dataset, the values of 0/1 in the columns Common Starlings(cs), Swift Parrots(sp), and Tree Martins(tm) represent if the nest boxes were occupied or not and by which species(1 = occupied, 0 = empty). The column e also represents if the nest box was occupied regardless of the species( 0 = occupied, 1 = empty).
-
-##b. 
-The main difference between Swift Parrots and other birds in this study is that they are the target species for restoration tools due to being critically endangered because of deforestation and their specified preference for nest cavities. This study aims to better understand how to create nest boxes appealing to Swift Parrots despite the usage of these nest boxes by other common birds in the area such as Tree Martins and Common Starlings.
+##b.
+The main difference between Swift Parrots and other birds in this study is that they are the target species for restoration tools due to being critically endangered because of deforestation and their specified preference for nest cavities.
+This study aims to better understand how to create nest boxes appealing to Swift Parrots despite the usage of these nest boxes by other common birds in the area such as Tree Martins and Common Starlings.
 
 ##c.
-The two years or "seasons" the authors are referring to are the years 2016 and 2019 where there was a mast tree flowering event at the breeding site that induced the nesting of these birds in the nest boxes. The year 2016 allowed to test for nest boxes at possible breeding sites while the year 2019 allowed to test the efficacy of permanent boxes.
+The two years or "seasons" the authors are referring to are the years 2016 and 2019 where there was a mast tree flowering event at the breeding site that induced the nesting of these birds in the nest boxes.
+The year 2016 allowed to test for nest boxes at possible breeding sites while the year 2019 allowed to test the efficacy of permanent boxes.
 
 ##d.
+
+| Model Description | Model Number | Season | Distance to Forest Edge |
+|-------------------|--------------|--------|-------------------------|
+| Null Model        | 0            |        |                         |
+| Saturated model   | 1            | X      | X                       |
+| Season            | 2            | X      |                         |
+| Distance          | 3            |        | X                       |
+
+
+##e. 
 
 
 
@@ -145,24 +166,25 @@ The two years or "seasons" the authors are referring to are the years 2016 and 2
 
 #Problem 4
 
-##a. 
+##a.
 How are the visualizations different from each other in the way you have represented your data?
-  * My data in homework 2 is physically separated by fast and slow music recordings in box plots while my data in homework 3 is mixed together in a circular diagram only distinguished by the type of color used for each data point. My data in homework 2 took a more statistical approach while homework 3 took an artistic approach and used softer shapes and doodles to represent information.
-  
+\* My data in homework 2 is physically separated by fast and slow music recordings in box plots while my data in homework 3 is mixed together in a circular diagram only distinguished by the type of color used for each data point.
+My data in homework 2 took a more statistical approach while homework 3 took an artistic approach and used softer shapes and doodles to represent information.
+
 What similarities do you see between all your visualizations?
-  * The similarities I see between my visualizations is that each had limited data points as they were both in the early drafting stages. They both still used pink to represent fast music bike rides and blue/green colors for slow music bike rides. Another big similarity that stood out was that there were more recorded observations for fast music bike rides in comparison to slow music bike rides. 
+\* The similarities I see between my visualizations is that each had limited data points as they were both in the early drafting stages.
+They both still used pink to represent fast music bike rides and blue/green colors for slow music bike rides.
+Another big similarity that stood out was that there were more recorded observations for fast music bike rides in comparison to slow music bike rides.
 
-What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization?Are these different between visualizations? If so, why? If not, why not?
-  * Aside form there being a trend of more fast music bike rides recorded, it can be seen that fast music bike rides have some of the highest recorder biking speeds (mph) across both visualizations. This is seen as bigger circles in homework 3 and in higher data points in the box plots y-axis(above 13 mph). Another pattern that can be seen in homework 3 is that I mainly biked past noon(denoted by orange dots around data point observations). These observed patterns are different between visualizations because the artistic visualization in homework 3 fits more data into a singular image (time, music type, wind presence, biking speed) than the limited data information in homework 2 (music type, biking speed).
+What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization?A
+re these different between visualizations?
+If so, why?
+If not, why not?
+\* Aside form there being a trend of more fast music bike rides recorded, it can be seen that fast music bike rides have some of the highest recorder biking speeds (mph) across both visualizations.
+This is seen as bigger circles in homework 3 and in higher data points in the box plots y-axis(above 13 mph).
+Another pattern that can be seen in homework 3 is that I mainly biked past noon(denoted by orange dots around data point observations).
+These observed patterns are different between visualizations because the artistic visualization in homework 3 fits more data into a singular image (time, music type, wind presence, biking speed) than the limited data information in homework 2 (music type, biking speed).
 
-What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
-
-
-
-
-
-
-
-
-
-
+What kinds of feedback did you get during week 9 in workshop or from the instructors?
+How did you implement or try those suggestions?
+If you tried and kept those suggestions, explain how and why; if not, explain why not.
