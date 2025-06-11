@@ -26,17 +26,19 @@ library("gt")
 library("colorspace")
 library("lterdatasampler")
 library("DHARMa")
+library("MuMIn")
+library("ggeffects")
 ```
 
 # Problem 1
 
 ## a.
 
-In part 1 they used a Pearsons test which can be identified by their usage of the word "correlation" when looking at the distance from headwater (km) and annual total nitrogen load.
+In part 1 they used a Pearson's correlation test which can be identified by their usage of the word "correlation" when looking at the distance from headwater (km) and annual total nitrogen load.
 
 In part 2 they used a one-way ANOVA test which can be identified by them comparing a single grouping variable(nitrogen load) with more than three subgroups(urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands).
 
-##b.
+## b.
 
 An equal variance test should be included using a Levene test.
 This will help determine if the sample sizes are equal and that there are no biases within the urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands data.
@@ -44,17 +46,17 @@ Homogeneity is a required component of the ANOVA test.
 Another test that should be conducted is the Shapiro-Wilk normality test.
 The ANOVA test depends on the data being normally distributed and conducting this test will help determine that the data is normally distributed.
 
-##c.
+## c.
 
 Part 1:
 
-A statistically significant correlation between between distance from headwater(km) and annual total nitrogen load (kg year-1) was found (Pearson’s r = correlation coefficient, p = 0.03, α = significance level\]).
+A statistically significant (effect size) correlation between between distance from headwater(km) and annual total nitrogen load (kg year-1) was found (Pearson’s r = correlation coefficient , p = 0.03, α = significance level\]).
 
 Part 2:
 
-A difference was found between the average nitrogen load (kg year-1) and urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands sources (one-way ANOVA, F(among groups df, within groups df) = F-statistic, p = 0.02, \$\alpha = significance level).
+A (insert effect size) was found between the average nitrogen load (kg year-1) and urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands sources (one-way ANOVA, F(among groups df, within groups df) = F-statistic, p = 0.02, \$\alpha = significance level).
 
-#Problem 2
+# Problem 2
 
 ```{r}
 # reading in sea surface temperature data
@@ -62,7 +64,7 @@ sst <-  read_csv("C:/Users/arant/Desktop/ENV S 193DS-R/ENVS-193DS_spring-2025_fi
 
 ```
 
-##a.
+## a.
 
 ```{r}
 
@@ -89,7 +91,7 @@ str(sst_clean) #display sst_clean data structure
 
 ```
 
-##b.
+## b.
 
 ```{r}
 
@@ -119,31 +121,32 @@ sst_plot
 
 ```
 
-#Problem 3
+# Problem 3
 
 ```{r}
 
 nest_boxes <-  read.csv(here("data", "occdist.csv")) #fixing file path render issue
 
 nest_b_clean <- clean_names(nest_boxes) %>%#cleaning names to replace . with _
-  mutate(season = as.factor(season)) #makeing season a factor
+  mutate(season = as.factor(season), #making season a factor
+  sp = as.numeric(sp)) #making sp numeric
 
 
 ```
 
-##a.
+## a.
 In this dataset, the values of 0/1 in the columns Common Starlings(cs), Swift Parrots(sp), and Tree Martins(tm) represent if the nest boxes were occupied or not and by which species(1 = occupied, 0 = empty).
 The column e also represents if the nest box was occupied regardless of the species( 0 = occupied, 1 = empty).
 
-##b.
+## b.
 The main difference between Swift Parrots and other birds in this study is that they are the target species for restoration tools due to being critically endangered because of deforestation and their specified preference for nest cavities.
 This study aims to better understand how to create nest boxes appealing to Swift Parrots despite the usage of these nest boxes by other common birds in the area such as Tree Martins and Common Starlings.
 
-##c.
+## c.
 The two years or "seasons" the authors are referring to are the years 2016 and 2019 where there was a mast tree flowering event at the breeding site that induced the nesting of these birds in the nest boxes.
 The year 2016 allowed to test for nest boxes at possible breeding sites while the year 2019 allowed to test the efficacy of permanent boxes.
 
-##d.
+## d.
 
 | Model Description | Model Number | Season | Distance to Forest Edge |
 |-------------------|--------------|--------|-------------------------|
@@ -153,7 +156,7 @@ The year 2016 allowed to test for nest boxes at possible breeding sites while th
 | Distance          | 4            |        | X                       |
 
 
-##e. 
+## e. 
 ```{r}
 # running the models
  
@@ -193,7 +196,7 @@ model_4 <- glm( #name of model and function
 
 ```
 
-##f. 
+## f. 
 ```{r}
 #checking residuals
 
@@ -218,10 +221,94 @@ plot(residual_4)
 
 
 
+```
+
+## g. 
+```{r}
+#AIC model
+#comparison. whichever has the lowest score has the best predictions with the least amount of variables
+AICc(model_1,
+          model_2, 
+          model_3, 
+          model_4)
+```
+
+The best model as determined by Akaike’s Information Criterion (AIC) is model two, the saturated model, with an AIC of 226.3133. This shows that the swift parrot presence in nest boxes is best predicted by the season and the distance to the forests edge.
+
+## h.
+```{r}
+
+#model predictions with 95% CI
+model_pred <- ggpredict(model_2,
+                              terms = c("edge_distance [all]", "season"))
+
+
+ggplot(nest_b_clean,
+       aes(x = edge_distance,
+           y = sp,
+           color = season)) +
+  geom_point(size = 2,
+             alpha = 0.4) +
+  geom_ribbon(data = model_pred,
+              aes(x = x,
+                  y = predicted,
+                  ymin = conf.low,
+                  ymax = conf.high,
+                  fill = group),
+              alpha = 0.4,
+              inherit.aes = FALSE) +
+  geom_line(data = model_pred,
+            aes(x = x,
+                y = predicted,
+                color = group),
+            size = 1.2,
+            inherit.aes = FALSE) +
+scale_fill_manual(values = c("2016" = "pink",
+                             "2019" = "orange")) + #ribbon color
+scale_color_manual(values = c("2016" = "pink",
+                             "2019" = "orange"))+
+scale_y_continuous(limits = c(0,1),
+                     breaks = c(0,0.5,1)) +
+  #editing asthetics
+  theme_bw()+
+    theme(
+      panel.grid = element_blank()) +
+  labs(
+    title = "Swift Parrot Occupation of Nest Boxes",
+    x = "Distance to forest edge(m)",
+    y = "Probability of Box occupancy (%)"
+  )
+  
+  
+
 
 ```
 
 
+## i. 
+**Figure 1.Swift Parrots prefer nest boxes near the forest edge.**Data obtained from DRYAD “Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird.”
+
+Circle points represent observed binary occupancy data for Swift Parrots (2016: n = 104, 2019: n = 123) used to build the model. Circle points show predicted occupancy probabilities from a saturated generalized linear model, with lines connecting them. The ribbons represent 95% confidence intervals around the predictions. Colors indicate season(purple = 2016, blue = 2019).
+
+## j.
+```{r}
+
+#calculating model predictions
+
+# for 0 distance
+ggpredict(model_2,#function uses 95% CI for model_2
+          terms = c("edge_distance[0]", "season"))
+
+# for 900 distance
+ggpredict(model_2,#function uses 95% CI for model_2
+          terms = c("edge_distance[900]", "season"))
+
+
+```
+
+## k.
+
+Based on the model predictions for nest box occupancy at 0 meters from the forest edge and 900 meters from the forest edge, it is demonstrated that Swift Parrots prefer nesting sites at the edge of the forest. For 0m from the edge of the forest, there is a 48% probability that a nest box is occupied in comparison to 900m from the edge of the of the forest where there is a 12% probability that a nest box is occupied. The previous values are collected form the 2016 season and are higher than the 2019 season due to this bird species not returning to previous nesting sites of previous years and also from getting out competed by other common starlings and Tree Martins.
 
 
 
@@ -229,13 +316,9 @@ plot(residual_4)
 
 
 
+# Problem 4
 
-
-
-
-#Problem 4
-
-##a.
+## a.
 How are the visualizations different from each other in the way you have represented your data?
 \* My data in homework 2 is physically separated by fast and slow music recordings in box plots while my data in homework 3 is mixed together in a circular diagram only distinguished by the type of color used for each data point.
 My data in homework 2 took a more statistical approach while homework 3 took an artistic approach and used softer shapes and doodles to represent information.
@@ -257,3 +340,4 @@ These observed patterns are different between visualizations because the artisti
 What kinds of feedback did you get during week 9 in workshop or from the instructors?
 How did you implement or try those suggestions?
 If you tried and kept those suggestions, explain how and why; if not, explain why not.
+  * I was unable to attend week 9 workshop but the feedback i received in week 10
