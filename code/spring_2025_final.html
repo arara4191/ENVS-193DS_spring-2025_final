@@ -9,7 +9,7 @@
 <meta name="author" content="Arantza Lira">
 <meta name="dcterms.date" content="2025-06-09">
 
-<title>spring_2025_final</title>
+<title>Spring 2025 Final</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,6 +103,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#g." id="toc-g." class="nav-link" data-scroll-target="#g.">g.</a></li>
   <li><a href="#h." id="toc-h." class="nav-link" data-scroll-target="#h.">h.</a></li>
   <li><a href="#i." id="toc-i." class="nav-link" data-scroll-target="#i.">i.</a></li>
+  <li><a href="#j." id="toc-j." class="nav-link" data-scroll-target="#j.">j.</a></li>
+  <li><a href="#k." id="toc-k." class="nav-link" data-scroll-target="#k.">k.</a></li>
   </ul></li>
   <li><a href="#problem-4" id="toc-problem-4" class="nav-link" data-scroll-target="#problem-4">Problem 4</a>
   <ul class="collapse">
@@ -115,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">spring_2025_final</h1>
+<h1 class="title">Spring 2025 Final</h1>
 </div>
 
 
@@ -208,11 +210,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 5 × 3
   year  month mean_monthly_sst
   &lt;fct&gt; &lt;ord&gt;            &lt;dbl&gt;
-1 2018  Apr               12.8
-2 2023  Nov               16.8
-3 2022  Aug               17.5
-4 2023  Aug               18.5
-5 2023  Feb               13  </code></pre>
+1 2022  Nov               15  
+2 2019  Feb               14.1
+3 2021  Oct               16.5
+4 2021  May               14.4
+5 2019  Apr               13.7</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will not display only 5 rows if grouped</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -461,8 +463,17 @@ model_4  2 229.6716</code></pre>
 <span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"2019"</span> <span class="ot">=</span> <span class="st">"orange"</span>)) <span class="sc">+</span> <span class="co">#ribbon color</span></span>
 <span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"2016"</span> <span class="ot">=</span> <span class="st">"pink"</span>,</span>
 <span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"2019"</span> <span class="ot">=</span> <span class="st">"orange"</span>))<span class="sc">+</span></span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">#editing asthetics</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Swift Parrot Occupation of Nest Boxes"</span>,</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Distance to forest edge(m)"</span>,</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Probability of Box occupancy (%)"</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -474,16 +485,76 @@ model_4  2 229.6716</code></pre>
 </section>
 <section id="i." class="level2">
 <h2 class="anchored" data-anchor-id="i.">i.</h2>
+<p><strong>Figure 1.Swift Parrots prefer nest boxes near the forest edge.</strong>Data obtained from DRYAD “Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird.” Circle points represent observed binary occupancy data for Swift Parrots (2016: n = 104, 2019: n = 123) used to build the model. Circle points show predicted occupancy probabilities from a saturated generalized linear model, with lines connecting them. The ribbons represent 95% confidence intervals around the predictions. Colors indicate season(purple = 2016, blue = 2019).</p>
+</section>
+<section id="j." class="level2">
+<h2 class="anchored" data-anchor-id="j.">j.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculating model predictions</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for 0 distance</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(model_2,<span class="co">#function uses 95% CI for model_2</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"edge_distance[0]"</span>, <span class="st">"season"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Predicted probabilities of sp
+
+season: 2016
+
+edge_distance | Predicted |     95% CI
+--------------------------------------
+            0 |      0.48 | 0.33, 0.64
+
+season: 2019
+
+edge_distance | Predicted |     95% CI
+--------------------------------------
+            0 |      0.30 | 0.18, 0.44</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for 900 distance</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(model_2,<span class="co">#function uses 95% CI for model_2</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"edge_distance[900]"</span>, <span class="st">"season"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Predicted probabilities of sp
+
+season: 2016
+
+edge_distance | Predicted |     95% CI
+--------------------------------------
+          900 |      0.12 | 0.06, 0.24
+
+season: 2019
+
+edge_distance | Predicted |     95% CI
+--------------------------------------
+          900 |      0.06 | 0.03, 0.13</code></pre>
+</div>
+</div>
+</section>
+<section id="k." class="level2">
+<h2 class="anchored" data-anchor-id="k.">k.</h2>
+<p>Based on the model prediction calculations and figure 1 for nest box occupancy at 0 meters from the forest edge and 900 meters from the forest edge, it is demonstrated that Swift Parrots prefer nesting sites at the edge of the forest. For 0m from the edge of the forest, there is a 48% probability that a nest box is occupied in comparison to 900m from the edge of the of the forest where there is a 12% probability that a nest box is occupied. The previous values are collected form the 2016 season and are higher than the 2019 season due to this bird species not returning to previous nesting sites of previous years and also from getting out competed by other common starlings and Tree Martins.</p>
 </section>
 </section>
 <section id="problem-4" class="level1">
 <h1>Problem 4</h1>
 <section id="a.-3" class="level2">
 <h2 class="anchored" data-anchor-id="a.-3">a.</h2>
-<p>How are the visualizations different from each other in the way you have represented your data? * My data in homework 2 is physically separated by fast and slow music recordings in box plots while my data in homework 3 is mixed together in a circular diagram only distinguished by the type of color used for each data point. My data in homework 2 took a more statistical approach while homework 3 took an artistic approach and used softer shapes and doodles to represent information.</p>
-<p>What similarities do you see between all your visualizations? * The similarities I see between my visualizations is that each had limited data points as they were both in the early drafting stages. They both still used pink to represent fast music bike rides and blue/green colors for slow music bike rides. Another big similarity that stood out was that there were more recorded observations for fast music bike rides in comparison to slow music bike rides.</p>
-<p>What patterns (e.g.&nbsp;differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization?A re these different between visualizations? If so, why? If not, why not? * Aside form there being a trend of more fast music bike rides recorded, it can be seen that fast music bike rides have some of the highest recorder biking speeds (mph) across both visualizations. This is seen as bigger circles in homework 3 and in higher data points in the box plots y-axis(above 13 mph). Another pattern that can be seen in homework 3 is that I mainly biked past noon(denoted by orange dots around data point observations). These observed patterns are different between visualizations because the artistic visualization in homework 3 fits more data into a singular image (time, music type, wind presence, biking speed) than the limited data information in homework 2 (music type, biking speed).</p>
-<p>What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not. * I was unable to attend week 9 workshop but the feedback i received in week 10</p>
+<p>How are the visualizations different from each other in the way you have represented your data?</p>
+<ul>
+<li>My data in homework 2 is physically separated by fast and slow music recordings in box plots while my data in homework 3 is mixed together in a circular diagram only distinguished by the type of color used for each data point. My data in homework 2 took a more statistical approach while homework 3 took an artistic approach and used softer shapes and doodles to represent information.</li>
+</ul>
+<p>What similarities do you see between all your visualizations?</p>
+<ul>
+<li>The similarities I see between my visualizations is that each had limited data points as they were both in the early drafting stages. They both still used pink to represent fast music bike rides and blue/green colors for slow music bike rides. Another big similarity that stood out was that there were more recorded observations for fast music bike rides in comparison to slow music bike rides.</li>
+</ul>
+<p>What patterns (e.g.&nbsp;differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization?A re these different between visualizations? If so, why? If not, why not?</p>
+<ul>
+<li>Aside form there being a trend of more fast music bike rides recorded, it can be seen that fast music bike rides have some of the highest recorder biking speeds (mph) across both visualizations.This is seen as bigger circles in homework 3 and in higher data points in the box plots y-axis(above 13 mph). Another pattern that can be seen in homework 3 is that I mainly biked past noon(denoted by orange dots around data point observations).These observed patterns are different between visualizations because the artistic visualization in homework 3 fits more data into a singular image (time, music type, wind presence, biking speed) than the limited data information in homework 2 (music type, biking speed).</li>
+</ul>
+<p>What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.</p>
+<ul>
+<li>I was unable to attend week 9 workshop but the feedback i received in week 10 discussed the visually appealing choice of making my visualization resemble a bike wheel with miniature bike wheels within it. My classmates also liked that the data was organized into days and that the symbols were intuitive to understand.The own adjustments I made when creating the final piece was to change the sizing of my data points to ensure they wouldn’t look too crowded and adding a clear legend on a side instead of having it spread out in the paper.</li>
+</ul>
 </section>
 </section>
 
