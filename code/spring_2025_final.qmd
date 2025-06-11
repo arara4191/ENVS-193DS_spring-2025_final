@@ -125,7 +125,10 @@ sst_plot
 
 nest_boxes <-  read.csv(here("data", "occdist.csv")) #fixing file path render issue
 
-nest_b_clean <- clean_names(nest_boxes) #cleaning names to replace . with _
+nest_b_clean <- clean_names(nest_boxes) %>%#cleaning names to replace . with _
+  mutate(season = as.factor(season)) #makeing season a factor
+
+
 ```
 
 ##a.
@@ -144,13 +147,66 @@ The year 2016 allowed to test for nest boxes at possible breeding sites while th
 
 | Model Description | Model Number | Season | Distance to Forest Edge |
 |-------------------|--------------|--------|-------------------------|
-| Null Model        | 0            |        |                         |
-| Saturated model   | 1            | X      | X                       |
-| Season            | 2            | X      |                         |
-| Distance          | 3            |        | X                       |
+| Null Model        | 1            |        |                         |
+| Saturated model   | 2            | X      | X                       |
+| Season            | 3            | X      |                         |
+| Distance          | 4            |        | X                       |
 
 
 ##e. 
+```{r}
+# running the models
+ 
+# null 
+model_1 <- glm( #name of model and function
+  sp ~ 1, # response ~ predictor
+  data = nest_b_clean, # df
+  family = "binomial" # distribution 
+)
+
+
+# saturated 
+model_2 <- glm( #name of model and function
+  sp ~ season + edge_distance, # response ~ predictor
+  data = nest_b_clean, # df
+  family = "binomial" # distribution
+)
+
+
+# season
+model_3 <- glm( #name of model and function
+  sp ~ season, # response ~ predictor
+  data = nest_b_clean, # df
+  family = "binomial" # distribution
+)
+
+
+# distance 
+model_4 <- glm( #name of model and function
+  sp ~ edge_distance, # response ~ predictor
+  data = nest_b_clean, # df
+  family = "binomial" # distribution
+)
+
+
+
+
+```
+
+##f. 
+```{r}
+#checking residuals
+
+residual_1 <- simulateResiduals(model_1)
+
+residual_2 <- simulateResiduals(model_2)
+
+residual_3 <- simulateResiduals(model_3)
+
+residual_4 <- simulateResiduals(model_4)
+
+
+```
 
 
 
